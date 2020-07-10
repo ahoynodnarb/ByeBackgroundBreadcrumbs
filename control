@@ -1,0 +1,9 @@
+Package: com.popsicletreehouse.closebreadcrumb
+Name: CloseBreadcrumb
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: PopsicleTreehouse
+Author: PopsicleTreehouse
+Section: Tweaks
