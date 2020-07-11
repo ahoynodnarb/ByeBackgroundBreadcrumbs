@@ -1,7 +1,9 @@
 static BOOL appNotFound = YES;
 static NSString *breadcrumbApp;
 
-@interface FBProcessManager
+@interface FBProcessManager {
+	FBApplicationProcess* _foregroundAppProcess;
+}
 -(id)processesForBundleIdentifier:(id)arg1;
 @end
 @interface SBAssistantController
@@ -20,8 +22,10 @@ static NSString *breadcrumbApp;
 -(id)init {
 	NSArray *processes = [self processesForBundleIdentifier:breadcrumbApp];
 	if(processes.count == 0){
+		//app fully closed
 		appNotFound = YES;
 	} else {
+		//app not closed
 		appNotFound = NO;
 	}
 	return %orig;
@@ -31,7 +35,7 @@ static NSString *breadcrumbApp;
 %hook SBDeviceApplicationSceneStatusBarBreadcrumbProvider
 + (_Bool)_shouldAddBreadcrumbToActivatingSceneEntity:(id)arg1 sceneHandle:(id)arg2 withTransitionContext:(id)arg3{
 	if(appNotFound) {
-		return YES;
+		return %orig;
 	} else {
 		return NO;
 	}
