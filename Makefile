@@ -1,16 +1,15 @@
-export SDKVERSION = 13.4
-ARCHS = arm64 arm64e
-
-THEOS_DEVICE_IP=localhost
-THEOS_DEVICE_PORT=2222
+export PREFIX=$(THEOS)/toolchain/Xcode.xctoolchain/usr/bin/
 
 INSTALL_TARGET_PROCESSES = SpringBoard
 
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = CloseBreadcrumb
+TWEAK_NAME = ByeBackgroundBreadcrumbs
 
-CloseBreadcrumb_FILES = Tweak.xm
-CloseBreadcrumb_CFLAGS = -fobjc-arc
+ByeBackgroundBreadcrumbs_FILES = Tweak.xm
+ByeBackgroundBreadcrumbs_CFLAGS = -fobjc-arc
+ByeBackgroundBreadcrumbs_LIBRARIES = sparkapplist
 
 include $(THEOS_MAKE_PATH)/tweak.mk
+SUBPROJECTS += byebackgroundbreadcrumbsprefs
+include $(THEOS_MAKE_PATH)/aggregate.mk
